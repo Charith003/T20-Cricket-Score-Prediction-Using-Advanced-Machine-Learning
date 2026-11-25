@@ -1,0 +1,22 @@
+
+================================ FINAL PROJECT REPORT ================================
+Project            : T20 Cricket Match Score Prediction Using Advanced ML and Ensemble Learning
+Dataset            : 1500 rows x 9 columns (Match ID excluded from modelling); missing values: 0, duplicates: 0
+Features used      : Overs Played, Wickets Lost, Run Rate, Home/Away, Opponent Strength, Pitch Condition, Weather
+Engineered set     : 'basic' chosen by CV ablation (current_est_runs, wickets_remaining, overs_remaining, wicket_pressure, remaining_innings_pct, scoring_phase, run_rate_category)
+Preprocessing      : feature engineering + median/mode imputation + one-hot encoding (+ scaling for linear/ensemble models), all inside Pipelines fitted on training data only
+Split              : 1049 train / 226 validation / 225 test (random, seed 42); final model refit on 1275 rows
+Models trained     : Stacking Regressor, Voting Regressor, CatBoost, XGBoost, LightGBM, Gradient Boosting, HistGradientBoosting, Extra Trees, Random Forest, Decision Tree, Lasso Regression, Linear Regression, Ridge Regression, Dummy (predict mean)
+Tuning             : {'Ridge Regression': 'GridSearchCV', 'Lasso Regression': 'GridSearchCV', 'Random Forest': 'RandomizedSearchCV', 'HistGradientBoosting': 'RandomizedSearchCV', 'XGBoost': 'RandomizedSearchCV', 'CatBoost': 'RandomizedSearchCV', 'LightGBM': 'Optuna (TPE, 20 trials)'}
+Best model         : Stacking Regressor
+Validation         : RMSE 1.84 | MAE 1.30 | R2 0.999
+Cross-validation   : RMSE 2.06 +/- 0.15 | MAE 1.43 | R2 0.999  (train+val, 5-fold)
+FINAL TEST         : MAE 1.35 | RMSE 1.88 | R2 0.999
+Tolerance accuracy : +/-5: 96.0% | +/-10: 100.0% | +/-15: 100.0% | +/-20: 100.0%   (custom metric)
+Mean-predictor baseline test RMSE: 70.90
+Prediction interval: 90% empirical +/-3.0 runs, observed test coverage 91.1%
+Most important inputs (permutation): Overs Played, Run Rate, Pitch Condition
+Limitations        : target-generation method unverified (29.0% of rows have estimated current runs > final score); possibly formula-generated; no chronology so random split only;
+                     accuracy relative to genuine T20 matches is unknown; interval is an average band although errors may vary with score; importance is not causation.
+Future improvements: real ball-by-ball data (venue, batters, bowlers, required rate), time-based validation, quantile or conformalized heteroscedastic intervals, calibration against real innings.
+=======================================================================================

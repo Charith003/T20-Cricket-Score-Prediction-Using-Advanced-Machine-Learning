@@ -1,0 +1,40 @@
+{
+  "description": "Library versions of the environment in which the saved Stacking Regressor and prediction pipeline were trained.",
+  "verification": {
+    "recorded_in_model_metadata_at_training_time": [
+      "python",
+      "numpy",
+      "pandas",
+      "scikit-learn"
+    ],
+    "read_from_the_same_training_environment_afterwards": [
+      "scipy",
+      "matplotlib",
+      "seaborn",
+      "xgboost",
+      "lightgbm",
+      "catboost",
+      "shap",
+      "joblib",
+      "optuna",
+      "ipywidgets"
+    ],
+    "note": "Only python, numpy, pandas and scikit-learn were written into model_metadata.json when the model was trained. The other versions were read with importlib.metadata from the same environment, in which no package changes were made between training and this audit. kagglehub is used only for the optional Kaggle download and is not pinned."
+  },
+  "packages_and_python": {
+    "python": "3.12.3",
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scikit-learn": "1.9.1",
+    "scipy": "1.18.1",
+    "matplotlib": "3.11.2",
+    "seaborn": "0.13.2",
+    "xgboost": "3.4.1",
+    "lightgbm": "4.7.0",
+    "catboost": "1.2.10",
+    "shap": "0.54.1",
+    "joblib": "1.6.0",
+    "optuna": "5.1.0",
+    "ipywidgets": "8.1.9"
+  }
+}

@@ -1,0 +1,217 @@
+{
+  "project": "T20 Cricket Match Score Prediction",
+  "created_utc": "2026-11-25 16:54:52",
+  "random_seed": 42,
+  "final_model": "Stacking Regressor",
+  "feature_set": "basic",
+  "input_columns": [
+    "Overs Played",
+    "Wickets Lost",
+    "Run Rate",
+    "Home/Away",
+    "Opponent Strength",
+    "Pitch Condition",
+    "Weather"
+  ],
+  "model_feature_names": [
+    "overs_played",
+    "wickets_lost",
+    "run_rate",
+    "opponent_strength",
+    "current_est_runs",
+    "wickets_remaining",
+    "overs_remaining",
+    "wicket_pressure",
+    "remaining_innings_pct",
+    "home_away_Away",
+    "home_away_Home",
+    "pitch_condition_Balanced",
+    "pitch_condition_Batting",
+    "pitch_condition_Bowling",
+    "weather_Cloudy",
+    "weather_Overcast",
+    "weather_Sunny",
+    "scoring_phase_death",
+    "scoring_phase_middle",
+    "scoring_phase_powerplay",
+    "run_rate_category_high",
+    "run_rate_category_low",
+    "run_rate_category_moderate",
+    "run_rate_category_very_high"
+  ],
+  "target": "Predicted Score",
+  "split": {
+    "train": 1049,
+    "validation": 226,
+    "test": 225,
+    "final_fit_rows": 1275
+  },
+  "final_test_metrics": {
+    "MAE": 1.3488122932638056,
+    "MSE": 3.5307214424472253,
+    "RMSE": 1.8790214055319394,
+    "R2": 0.9992976356898585,
+    "Explained Variance": 0.9992990937037229,
+    "+/-5 Runs Accuracy (%)": 96.0,
+    "+/-10 Runs Accuracy (%)": 100.0,
+    "+/-15 Runs Accuracy (%)": 100.0,
+    "+/-20 Runs Accuracy (%)": 100.0
+  },
+  "cross_validation_train_val": {
+    "rmse": {
+      "mean": 2.0645989224438743,
+      "std": 0.1470033638080304
+    },
+    "mae": {
+      "mean": 1.4263558300594426,
+      "std": 0.09973956418213317
+    },
+    "r2": {
+      "mean": 0.9991620524588992,
+      "std": 0.0001388379940130518
+    }
+  },
+  "validation_metrics_of_final_model": {
+    "MAE": 1.2991887821216792,
+    "MSE": 3.3865760285045257,
+    "RMSE": 1.8402652060245355,
+    "R2": 0.9992711115742051,
+    "Explained Variance": 0.9992727425291169,
+    "+/-5 Runs Accuracy (%)": 97.78761061946902,
+    "+/-10 Runs Accuracy (%)": 100.0,
+    "+/-15 Runs Accuracy (%)": 100.0,
+    "+/-20 Runs Accuracy (%)": 100.0
+  },
+  "prediction_interval": {
+    "level": 0.9,
+    "half_width_runs": 2.97072116075131,
+    "observed_test_coverage_pct": 91.11111111111111,
+    "method": "empirical quantile of out-of-fold absolute residuals"
+  },
+  "hyperparameter_tuning": {
+    "Ridge Regression": {
+      "method": "GridSearchCV",
+      "best_params": {
+        "alpha": 1
+      },
+      "cv_rmse": 12.04380477751236
+    },
+    "Lasso Regression": {
+      "method": "GridSearchCV",
+      "best_params": {
+        "alpha": 0.01
+      },
+      "cv_rmse": 12.045591932256807
+    },
+    "Random Forest": {
+      "method": "RandomizedSearchCV",
+      "best_params": {
+        "max_depth": null,
+        "max_features": 1.0,
+        "min_samples_leaf": 2,
+        "min_samples_split": 4,
+        "n_estimators": 364
+      },
+      "cv_rmse": 7.322726787474435
+    },
+    "HistGradientBoosting": {
+      "method": "RandomizedSearchCV",
+      "best_params": {
+        "l2_regularization": 0.03148911647956861,
+        "learning_rate": 0.1785436060870726,
+        "max_iter": 206,
+        "max_leaf_nodes": 15,
+        "min_samples_leaf": 25
+      },
+      "cv_rmse": 3.8240637048024886
+    },
+    "XGBoost": {
+      "method": "RandomizedSearchCV",
+      "best_params": {
+        "colsample_bytree": 0.8733054075301833,
+        "learning_rate": 0.08147542854470236,
+        "max_depth": 4,
+        "n_estimators": 355,
+        "reg_alpha": 0.027958988618089223,
+        "reg_lambda": 0.23145798905204878,
+        "subsample": 0.902144564127061
+      },
+      "cv_rmse": 3.1986903053094933
+    },
+    "CatBoost": {
+      "method": "RandomizedSearchCV",
+      "best_params": {
+        "depth": 3,
+        "iterations": 457,
+        "l2_leaf_reg": 5.272283709671439,
+        "learning_rate": 0.17361318509025225
+      },
+      "cv_rmse": 2.6146714545938705
+    },
+    "LightGBM": {
+      "method": "Optuna (TPE, 20 trials)",
+      "best_params": {
+        "n_estimators": 346,
+        "num_leaves": 37,
+        "max_depth": 3,
+        "learning_rate": 0.10326900930504547,
+        "min_child_samples": 7,
+        "colsample_bytree": 0.8590689908319756,
+        "subsample": 0.8,
+        "subsample_freq": 1
+      },
+      "cv_rmse": 3.1586406046741042
+    }
+  },
+  "valid_categories": {
+    "home_away": [
+      "Home",
+      "Away"
+    ],
+    "pitch_condition": [
+      "Batting",
+      "Bowling",
+      "Balanced"
+    ],
+    "weather": [
+      "Sunny",
+      "Cloudy",
+      "Overcast"
+    ]
+  },
+  "input_ranges": {
+    "overs": [
+      1,
+      20
+    ],
+    "wickets": [
+      0,
+      10
+    ],
+    "strength": [
+      1,
+      10
+    ],
+    "run_rate": [
+      5.0,
+      15.0
+    ]
+  },
+  "data_quality": {
+    "rows": 1500,
+    "columns": 9,
+    "missing_values": 0,
+    "duplicate_rows": 0,
+    "invalid_range_rows": 0,
+    "target_below_runs_so_far_pct": 29.0,
+    "linear_formula_cv_r2": 0.9718,
+    "target_nature": "generation method not independently established; patterns consistent with a formula-generated target (unverified)"
+  },
+  "software": {
+    "python": "3.12.10",
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "sklearn": "1.9.1"
+  },
+  "warning": "Target-generation method is unverified and some rows are internally inconsistent; results describe this dataset and are not evidence of real-world T20 forecasting accuracy."
+}
